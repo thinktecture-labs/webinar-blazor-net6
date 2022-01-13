@@ -7,13 +7,6 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<RunAOTCompilation>true</RunAOTCompilation>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-		<!-- outputstyle option -->
-		<LibSassOutputStyle>compressed</LibSassOutputStyle>
-		<LibSassOutputStyle Condition="'$(Configuration)' == 'Debug'">expanded</LibSassOutputStyle>
-		<!-- level option -->
-		<LibSassOutputLevel>verbose</LibSassOutputLevel>
-		<!-- msbuild output level -->
-		<LibSassMessageLevel>High</LibSassMessageLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
