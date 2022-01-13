@@ -1,0 +1,15 @@
+﻿@inherits CollectionComponentBase<Net6Features.Shared.Models.Conference>
+
+<HeadContent>
+    <meta name="description" content="Collection for TT Conferences" />
+</HeadContent>
+
+<DataTable TItem="@Net6Features.Shared.Models.Conference"
+           Title="Conferences"
+           Row="Title"
+           Data="_data"
+           IsLoading="_loadingData"
+           SearchTerm="@SearchTerm"
+           UseGrpcChanged="ReloadDataAsync"
+           ValueExpression="@((conf) => conf.Title)"
+           SearchExpression="@((conf, searchTerm) => conf.Title.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))" />

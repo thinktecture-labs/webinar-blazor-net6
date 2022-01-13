@@ -1,0 +1,1 @@
+.scrollable-list{height:calc(100vh - var(--mud-appbar-height));overflow-y:auto;overflow-x:hidden}

@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@_currentTheme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudSwipeArea>
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            @if (NavigationManager?.Uri.Last() != '/')
+            {
+                <MudIconButton Icon="@Icons.Filled.ArrowBack" OnClick="@(() => NavigationManager?.NavigateTo("/"))" />
+            }
+            <MudHidden Breakpoint="Breakpoint.SmAndDown">
+                <MudText Typo="Typo.h5">Hot Features in .NET 6</MudText>
+            </MudHidden>
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudText Typo="Typo.h6">Hot Features in .NET 6</MudText>
+            </MudHidden>
+            <MudSpacer/>
+            <MudIconButton Icon="@_themeIcon" Color="Color.Inherit" Target="_blank" OnClick="@SwitchTheme"/>
+        </MudAppBar>
+        <MudMainContent Class="pt-16">
+            <div class="content-container pa-8">
+                @Body
+            </div>
+        </MudMainContent>
+    </MudLayout>
+</MudSwipeArea>

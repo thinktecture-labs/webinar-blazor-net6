@@ -1,0 +1,55 @@
+﻿@using System.Linq.Expressions
+@attribute [CascadingTypeParameter(nameof(TItem))]
+@typeparam TItem
+
+
+
+<MudBreakpointProvider>
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudTable Items="FilteredData()" Height="calc(100vh - 200px)" FixedHeader="true" Virtualize="true" Dense="@(_breakpoint <= Breakpoint.Sm)" Loading="@IsLoading" LoadingProgressColor="Color.Primary">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">@Title</MudText>
+                <MudSpacer />
+                <SearchBar @bind-SearchTerm="_searchTerm" Title="@Title"></SearchBar>
+            </ToolBarContent>
+            <ColGroup>
+                <col />
+                <col style="width: 60px;" />
+            </ColGroup>
+            <HeaderContent>
+                <MudTh>@Row</MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <TableRow Item="context" Row="Row" SearchTerm="@_searchTerm" ValueExpression="ValueExpression"></TableRow>
+            </RowTemplate>            
+        </MudTable>
+    </MudHidden>
+    <MudHidden Breakpoint="Breakpoint.SmAndUp">        
+        <MudSimpleTable Hover="true" Dense="true" FixedHeader="true" Style="@("height: calc(100vh - 200px)")">
+            <thead>
+                <tr>
+                    <th>@Row</th>
+                    <th style="width: 60px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <Virtualize Items="FilteredData()" OverscanCount="25" Context="c">
+                    <ItemContent>
+                        <tr>
+                            <td>
+                                <MudHighlighter Text="@(ValueExpression(c))" HighlightedText="@_searchTerm" />
+                            </td>
+                            <td>
+                                <MudIconButton Icon="@Icons.Filled.Edit"></MudIconButton>
+                            </td>
+                        </tr>
+                    </ItemContent>
+                    <Placeholder>
+                        <MudSkeleton />
+                    </Placeholder>
+                </Virtualize>
+            </tbody>
+        </MudSimpleTable>
+    </MudHidden>
+</MudBreakpointProvider>

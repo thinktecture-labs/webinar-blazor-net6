@@ -1,0 +1,21 @@
+﻿input {
+    background: none;
+    color: var(--mud-palette-text-primary);
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    max-width: 60%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #c6c6c6;
+
+    &:focus {
+        outline: none;
+        border-bottom: 1px solid var(--mud-palette-primary);
+    }
+
+    &:active {
+        border-bottom: 1px solid var(--mud-palette-primary);
+    }
+}

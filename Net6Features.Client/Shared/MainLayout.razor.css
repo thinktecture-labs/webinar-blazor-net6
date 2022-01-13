@@ -1,0 +1,1 @@
+.content-container{display:flex;flex-direction:column;height:calc(100vh - var(--mud-appbar-height))}
