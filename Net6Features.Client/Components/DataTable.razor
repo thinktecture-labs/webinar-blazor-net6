@@ -1,48 +1,57 @@
 ﻿@using System.Linq.Expressions
-@attribute [CascadingTypeParameter(nameof(TItem))]
-@typeparam TItem
+@attribute [CascadingTypeParameter(nameof(TDataTableItem))]
+@typeparam TDataTableItem
+
 
 
 
 <MudBreakpointProvider>
-    <MudHidden Breakpoint="Breakpoint.Xs">
-        <MudTable Items="FilteredData()" Height="calc(100vh - 200px)" FixedHeader="true" Virtualize="true" Dense="@(_breakpoint <= Breakpoint.Sm)" Loading="@IsLoading" LoadingProgressColor="Color.Primary">
-            <ToolBarContent>
-                <MudText Typo="Typo.h6">@Title</MudText>
-                <MudSpacer />
-                <SearchBar @bind-SearchTerm="_searchTerm" Title="@Title"></SearchBar>
-            </ToolBarContent>
-            <ColGroup>
-                <col />
-                <col style="width: 60px;" />
-            </ColGroup>
-            <HeaderContent>
-                <MudTh>@Row</MudTh>
-                <MudTh></MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <TableRow Item="context" Row="Row" SearchTerm="@_searchTerm" ValueExpression="ValueExpression"></TableRow>
-            </RowTemplate>            
-        </MudTable>
-    </MudHidden>
-    <MudHidden Breakpoint="Breakpoint.SmAndUp">        
+    <div class="d-flex align-center mud-elevation-3 py-2 px-4 mb-4">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudToggleIconButton Icon="@Icons.Material.Filled.PowerOff" ToggledIcon="@Icons.Material.Filled.Power" Toggled="@UseGrpc" ToggledChanged="OnUseGrpcChanged"></MudToggleIconButton>
+        </MudHidden>
+        <MudText Typo="@_headerTypo">@Title</MudText>
+        <MudSpacer />
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">            
+            <SearchBar SearchTerm="@SearchTerm" SearchTermChanged="OnSearchTermChanged" Title="@Title"></SearchBar>
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <MudToggleIconButton Size="@_iconSize" ToggledSize="@_iconSize" Icon="@Icons.Material.Filled.PowerOff" ToggledIcon="@Icons.Material.Filled.Power" Toggled="@UseGrpc" ToggledChanged="OnUseGrpcChanged"></MudToggleIconButton>
+        </MudHidden>
+    </div>
+    @if (IsLoading)
+    {
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mx-2" />
+    }
+    else
+    {
         <MudSimpleTable Hover="true" Dense="true" FixedHeader="true" Style="@("height: calc(100vh - 200px)")">
+            <colgroup>
+                <col width="100%" />
+                <col width="0%" />
+            </colgroup>
             <thead>
                 <tr>
                     <th>@Row</th>
-                    <th style="width: 60px;"></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <Virtualize Items="FilteredData()" OverscanCount="25" Context="c">
+                <Virtualize Items="Data" OverscanCount="25" Context="c">
                     <ItemContent>
                         <tr>
-                            <td>
-                                <MudHighlighter Text="@(ValueExpression(c))" HighlightedText="@_searchTerm" />
+                            <td class="truncate">
+                                <MudHighlighter Text="@(ValueExpression(c))" HighlightedText="@SearchTerm" />
                             </td>
-                            <td>
-                                <MudIconButton Icon="@Icons.Filled.Edit"></MudIconButton>
-                            </td>
+                            <MudHidden Breakpoint="Breakpoint.SmAndDown">
+                                <td class="d-flex">
+                                    <MudIconButton Icon="@Icons.Filled.QrCode" OnClick="() => ShowQrCode(c)"></MudIconButton>
+                                    <MudIconButton Style="float: right;" Icon="@Icons.Filled.Edit"></MudIconButton>
+                                </td>
+                            </MudHidden>
+                            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                                <td></td>
+                            </MudHidden>
                         </tr>
                     </ItemContent>
                     <Placeholder>
@@ -51,5 +60,5 @@
                 </Virtualize>
             </tbody>
         </MudSimpleTable>
-    </MudHidden>
+    }
 </MudBreakpointProvider>

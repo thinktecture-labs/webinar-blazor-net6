@@ -8,9 +8,9 @@
 <div class="flex-container column">
     <MudField Label="Select Data Source" Variant="Variant.Outlined" InnerPadding="false">
         <MudRadioGroup T="string" SelectedOptionChanged="@OnSelectedOptionChanged">
-            <MudRadio Color="Color.Primary" T="string" Option="@("Speakers")">Speakers</MudRadio>
-            <MudRadio Color="Color.Primary" T="string" Option="@("Conferences")">Conferences</MudRadio>
-            <MudRadio Color="Color.Primary" T="string" Option="@("Contributions")">Contributions</MudRadio>
+            <MudRadio Color="Color.Primary" T="string" Option="@("speakers")">Speakers</MudRadio>
+            <MudRadio Color="Color.Primary" T="string" Option="@("conferences")">Conferences</MudRadio>
+            <MudRadio Color="Color.Primary" T="string" Option="@("contributions")">Contributions</MudRadio>
         </MudRadioGroup>
     </MudField>
     <MudTextField T="string" AdornmentColor="Color.Primary" Label="Search Term" @bind-Value="_searchTerm" />   

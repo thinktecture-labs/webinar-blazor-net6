@@ -17,17 +17,66 @@ namespace Net6Features.Api.Utils
                 if (!context.Contributions.Any())
                 {
                     var contributions = await LoadDataAsync<Contribution>(context);
+                    var rest = 10000 - contributions.Count;
+                    if (rest > 0)
+                    {
+                        for (int i = 0; i < rest; i++)
+                        {
+                            var id = contributions.Count  + 1;
+                            contributions.Add(new Contribution
+                            {
+                                Id = id,
+                                Title = $"Contribution {id}",
+                                Date = DateTime.Now.ToShortDateString(),
+                                Abstract = "Lorem ipsum dolor...",
+                                Language = "deutsch",
+                                PreviewSrc = String.Empty,
+                                Type = "Talk"
+                            });
+                        }
+                    }
                     await context.Contributions.AddRangeAsync(contributions);
                 }
 
                 if (!context.Conferences.Any())
                 {
                     var conferences = await LoadDataAsync<Conference>(context);
+                    var rest = 10000 - conferences.Count;
+                    if (rest > 0)
+                    {
+                        for (int i = 0; i < rest; i++)
+                        {
+                            var id = conferences.Count  + 1;
+                            conferences.Add(new Conference
+                            {
+                                Id = id,
+                                Title = $"Conference {id}",
+                                City = "Rodalben",
+                                Country = "Deutschland",
+                                Url = String.Empty,
+                            });
+                        }
+                    }
                     await context.Conferences.AddRangeAsync(conferences);
                 }
                 if (!context.Speakers.Any())
                 {
                     var speakers = await LoadDataAsync<Speaker>(context);
+                    var rest = 10000 - speakers.Count;
+                    if (rest > 0)
+                    {
+                        for (int i = 0; i < rest; i++)
+                        {
+                            var id = speakers.Count  + 1;
+                            speakers.Add(new Speaker
+                            {
+                                Id = id,
+                                FirstName = $"First {id}",
+                                LastName = $"Last generated {id}",
+                                Email = $"speaker{id}@tt.com"
+                            });
+                        }
+                    }
                     await context.Speakers.AddRangeAsync(speakers);
                 }
 

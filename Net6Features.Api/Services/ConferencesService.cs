@@ -13,9 +13,12 @@ namespace Net6Features.Api.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public Task<List<Conference>> CollectionAsync()
+        public Task<List<Conference>> GetCollectionAsync(CollectionRequest request)
         {
-            return _context.Conferences.ToListAsync();
+            var result = String.IsNullOrWhiteSpace(request.SearchTerm) 
+                ? _context.Conferences 
+                : _context.Conferences.Where(c => c.Title.Contains(request.SearchTerm));
+            return result.Take(request.Take).ToListAsync();
         }
     }
 }

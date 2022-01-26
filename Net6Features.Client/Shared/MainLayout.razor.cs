@@ -55,6 +55,7 @@ namespace Net6Features.Client.Shared
         [Inject] public NavigationManager? NavigationManager { get; set; }
 
         private bool _isInDarkMode;
+        private bool _isOpen;
         private string _themeIcon = Icons.Material.Filled.LightMode;
         private MudTheme _currentTheme = DefaultTheme;       
 
@@ -95,6 +96,11 @@ namespace Net6Features.Client.Shared
                 _themeIcon = Icons.Material.Filled.LightMode;
                 _currentTheme = DefaultTheme;
             }
+        }
+
+        private void ToggleDrawer()
+        {
+            _isOpen = !_isOpen;
         }
     }
 }

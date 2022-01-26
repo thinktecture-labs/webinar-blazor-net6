@@ -1,0 +1,30 @@
+﻿@page "/speakers"
+
+@inherits CollectionComponentBase<Net6Features.Shared.Models.Speaker>
+
+<HeadContent>
+    <meta name="description" content="Collection for TT Speakers" />
+</HeadContent>
+
+<div class="d-flex flex-column">
+    <div class="mb-2">
+        <MudSelect T="int" Label="Collection count" Value="_collectionCount" ValueChanged="OnCollectionCountChanged">
+            <MudSelectItem Value="10">10</MudSelectItem>
+            <MudSelectItem Value="100">100</MudSelectItem>
+            <MudSelectItem Value="1000">1000</MudSelectItem>
+            <MudSelectItem Value="10000">10000</MudSelectItem>
+        </MudSelect>
+    </div>
+    <div class="flex-grow-1">
+        <DataTable TDataTableItem="@Net6Features.Shared.Models.Speaker"
+                   SearchTerm="@_searchTerm"
+                   SearchTermChanged="OnSearchTermChanged"
+                   UseGrpc="_useGrpc"
+                   UseGrpcChanged="OnUseGrpcChanged"
+                   Title="Speakers"
+                   Row="Title"
+                   Data="_data"
+                   IsLoading="_loadingData"
+                   ValueExpression="@((d) => $"{d.FirstName} {d.LastName}")" />
+    </div>
+</div>

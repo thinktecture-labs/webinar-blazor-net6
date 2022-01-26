@@ -18,7 +18,7 @@ builder.Services.AddCors(options =>
                 .AllowCredentials()
                 .AllowAnyHeader()
                 .WithHeaders(new[] { "GET", "HEAD", "PUT", "POST", "DELETE" })
-                .WithOrigins("https://localhost:7042");
+                .WithOrigins("https://localhost:7229", "https://blazor-wasm-net6-hosted.azurewebsites.net");
         });
 });
 

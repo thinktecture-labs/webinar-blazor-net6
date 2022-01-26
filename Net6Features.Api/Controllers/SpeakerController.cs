@@ -15,9 +15,16 @@ namespace Net6Features.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SpeakersAsync()
+        public async Task<IActionResult> GetSpeakersAsync([FromQuery] int take = 100)
         {
-            var result = await _speakersService.CollectionAsync();
+            var result = await _speakersService.GetCollectionAsync(new Shared.Services.CollectionRequest { Take = take });
+            return Ok(result);
+        }
+
+        [HttpGet("filter/{searchTerm}")]
+        public async Task<IActionResult> GetFilteredSpeakersAsync([FromRoute] string searchTerm, [FromQuery] int take = 100)
+        {
+            var result = await _speakersService.GetCollectionAsync(new Shared.Services.CollectionRequest { Take = take, SearchTerm = searchTerm });
             return Ok(result);
         }
     }

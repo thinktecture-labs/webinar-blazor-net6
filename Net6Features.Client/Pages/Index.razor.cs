@@ -16,8 +16,8 @@ namespace Net6Features.Client.Pages
             if (NavigationManager is not null && !String.IsNullOrWhiteSpace(_dataSource))
             {
                 var url = string.IsNullOrWhiteSpace(_searchTerm) 
-                    ? $"overview/{_dataSource}" 
-                    : $"overview/{_dataSource}?searchTerm={_searchTerm}";
+                    ? $"{_dataSource}" 
+                    : $"{_dataSource}?searchTerm={_searchTerm}";
                 NavigationManager.NavigateTo(url);
             }
         }

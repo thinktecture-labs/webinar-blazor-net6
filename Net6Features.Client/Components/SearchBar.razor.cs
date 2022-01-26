@@ -37,15 +37,22 @@ namespace Net6Features.Client.Components
         {
             if (firstRender)
             {
-                Console.WriteLine("Register debounce JS Event");
-                _selfReference = DotNetObjectReference.Create(this);
-                var minInterval = 500; // Only notify every 500 ms
-                if (_module == null)
+                try
                 {
-                    _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/SearchBar.js");
+                    Console.WriteLine("Register debounce JS Event");
+                    _selfReference = DotNetObjectReference.Create(this);
+                    var minInterval = 500; // Only notify every 500 ms
+                    if (_module == null)
+                    {
+                        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/SearchBar.razor.js");
+                    }
+                    await _module.InvokeVoidAsync("onDebounceInput",
+                        _searchBarElement, _selfReference, minInterval);
                 }
-                await _module.InvokeVoidAsync("onDebounceInput",
-                    _searchBarElement, _selfReference, minInterval);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 

@@ -15,9 +15,16 @@ namespace Net6Features.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ConferencesAsync()
+        public async Task<IActionResult> GetConferencesAsync([FromQuery] int take = 100)
         {
-            var result = await _conferencesService.CollectionAsync();
+            var result = await _conferencesService.GetCollectionAsync(new Shared.Services.CollectionRequest { Take = take });
+            return Ok(result);
+        }
+
+        [HttpGet("filter/{searchTerm}")]
+        public async Task<IActionResult> GetFilteredConferencesAsync([FromRoute]string searchTerm, [FromQuery] int take = 100)
+        {
+            var result = await _conferencesService.GetCollectionAsync(new Shared.Services.CollectionRequest { Take = take, SearchTerm = searchTerm });
             return Ok(result);
         }
     }
