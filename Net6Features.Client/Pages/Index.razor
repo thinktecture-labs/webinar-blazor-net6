@@ -1,11 +1,22 @@
 ﻿@page "/"
 
 <PageTitle>@_pageTitle</PageTitle>
+
 <HeadContent>
     <meta name="description" content="@_description">
 </HeadContent>
 
-<div class="flex-container column">
+<div class="weather-wrapper">
+    <div class="weather-card">
+        <div class="weather-icon">
+            <img src="@_imgPath" alt="" />
+        </div>
+        <h1>@($"{Math.Round(_temperatures?.Main.Temp ?? 0, 0)}º")</h1>
+        <p>@_temperatures?.Name</p>
+    </div>
+</div>
+
+<div class="d-flex flex-column align-center justify-center container">
     <MudField Label="Select Data Source" Variant="Variant.Outlined" InnerPadding="false">
         <MudRadioGroup T="string" SelectedOptionChanged="@OnSelectedOptionChanged">
             <MudRadio Color="Color.Primary" T="string" Option="@("speakers")">Speakers</MudRadio>
@@ -13,6 +24,6 @@
             <MudRadio Color="Color.Primary" T="string" Option="@("contributions")">Contributions</MudRadio>
         </MudRadioGroup>
     </MudField>
-    <MudTextField T="string" AdornmentColor="Color.Primary" Label="Search Term" @bind-Value="_searchTerm" />   
+    <MudTextField T="string" AdornmentColor="Color.Primary" Label="Search Term" @bind-Value="_searchTerm" />
     <MudButton OnClick="NavigateToDataSource">Suchen</MudButton>
 </div>

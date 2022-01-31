@@ -1,30 +1,50 @@
 ﻿@page "/contributions"
 @inherits CollectionComponentBase<Net6Features.Shared.Models.Contribution>
 
+<PageTitle>Contributions</PageTitle>
+
 <HeadContent>
-    <meta name="description" content="Collection for TT Contributions" />
+    <meta name="description" content="Collection for Thinktecture Contributions" />
 </HeadContent>
 
+@if (!_loadingData)
+{
+    <MudAlert Severity="@(_useGrpc ? Severity.Success : Severity.Warning)">Deserialization time: <b>@(Math.Round(_totalSeconds - _headersSeconds, 2)) seconds</b></MudAlert>
+}
+else
+{
+    <MudAlert Severity="Severity.Info">Loading data...</MudAlert>
+}
 
-<div class="d-flex flex-column">
-    <div class="mb-2">
-        <MudSelect T="int" Label="Collection count" Value="_collectionCount" ValueChanged="OnCollectionCountChanged">
-            <MudSelectItem Value="10">10</MudSelectItem>
-            <MudSelectItem Value="100">100</MudSelectItem>
-            <MudSelectItem Value="1000">1000</MudSelectItem>
-            <MudSelectItem Value="10000">10000</MudSelectItem>
-        </MudSelect>
-    </div>
-    <div class="flex-grow-1">
-        <DataTable TDataTableItem="@Net6Features.Shared.Models.Contribution"
-                   SearchTerm="@_searchTerm"
-                   SearchTermChanged="OnSearchTermChanged"
-                   UseGrpc="_useGrpc"
-                   UseGrpcChanged="OnUseGrpcChanged"
-                   Title="Contributions"
-                   Row="Title"
-                   Data="_data"
-                   IsLoading="_loadingData"
-                   ValueExpression="@((contribution) => contribution.Title)" />
-    </div>
-</div>
+<ErrorBoundary>
+    <ChildContent>
+        <div class="d-flex flex-column">
+            <div class="mb-2">
+                <MudSelect T="int" Label="Collection count" Value="_collectionCount" ValueChanged="OnCollectionCountChanged">
+                    <MudSelectItem Value="10">10</MudSelectItem>
+                    <MudSelectItem Value="100">100</MudSelectItem>
+                    <MudSelectItem Value="1000">1000</MudSelectItem>
+                    <MudSelectItem Value="10000">10000</MudSelectItem>
+                </MudSelect>
+            </div>
+            <div class="flex-grow-1">
+                <DataTable TDataTableItem="@Net6Features.Shared.Models.Contribution"
+                           SearchTerm="@_searchTerm"
+                           SearchTermChanged="OnSearchTermChanged"
+                           UseGrpc="_useGrpc"
+                           UseGrpcChanged="OnUseGrpcChanged"
+                           Title="Conferences"
+                           Row="Title"
+                           Data="_data"
+                           IsLoading="_loadingData">
+                    <TableRow>
+                        <MudHighlighter Text="@context.Title" HighlightedText="@SearchTerm" />
+                    </TableRow>
+                </DataTable>
+            </div>
+        </div>
+    </ChildContent>
+    <ErrorContent>
+        <MudAlert Severity="Severity.Error">@context.Message</MudAlert>
+    </ErrorContent>
+</ErrorBoundary>

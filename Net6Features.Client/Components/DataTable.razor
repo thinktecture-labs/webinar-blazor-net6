@@ -2,7 +2,7 @@
 @attribute [CascadingTypeParameter(nameof(TDataTableItem))]
 @typeparam TDataTableItem
 
-
+<PageTitle>DataTable</PageTitle>
 
 
 <MudBreakpointProvider>
@@ -12,7 +12,7 @@
         </MudHidden>
         <MudText Typo="@_headerTypo">@Title</MudText>
         <MudSpacer />
-        <MudHidden Breakpoint="Breakpoint.SmAndDown">            
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
             <SearchBar SearchTerm="@SearchTerm" SearchTermChanged="OnSearchTermChanged" Title="@Title"></SearchBar>
         </MudHidden>
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
@@ -36,23 +36,12 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>                
                 <Virtualize Items="Data" OverscanCount="25" Context="c">
                     <ItemContent>
-                        <tr>
-                            <td class="truncate">
-                                <MudHighlighter Text="@(ValueExpression(c))" HighlightedText="@SearchTerm" />
-                            </td>
-                            <MudHidden Breakpoint="Breakpoint.SmAndDown">
-                                <td class="d-flex">
-                                    <MudIconButton Icon="@Icons.Filled.QrCode" OnClick="() => ShowQrCode(c)"></MudIconButton>
-                                    <MudIconButton Style="float: right;" Icon="@Icons.Filled.Edit"></MudIconButton>
-                                </td>
-                            </MudHidden>
-                            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-                                <td></td>
-                            </MudHidden>
-                        </tr>
+                        <CascadingValue IsFixed="true" Value="c">
+                            @ChildContent
+                        </CascadingValue>
                     </ItemContent>
                     <Placeholder>
                         <MudSkeleton />

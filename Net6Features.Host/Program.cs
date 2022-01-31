@@ -1,9 +1,8 @@
 using Blazored.LocalStorage;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using MudBlazor.Services;
+using Net6Features.Client.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +19,7 @@ builder.Services.AddScoped<GrpcChannel>(services =>
     return channel;
 });
 
+builder.Services.AddScoped<WeatherService>();
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 

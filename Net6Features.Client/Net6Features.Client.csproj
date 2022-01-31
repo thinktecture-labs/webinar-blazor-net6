@@ -4,16 +4,11 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<!--Ignore Culture-->
 		<InvariantGlobalization>true</InvariantGlobalization>
+		<!--enable AOT-compilation-->
 		<RunAOTCompilation>true</RunAOTCompilation>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-		<!-- outputstyle option -->
-		<LibSassOutputStyle>compressed</LibSassOutputStyle>
-		<LibSassOutputStyle Condition="'$(Configuration)' == 'Debug'">expanded</LibSassOutputStyle>
-		<!-- level option -->
-		<LibSassOutputLevel>verbose</LibSassOutputLevel>
-		<!-- msbuild output level -->
-		<LibSassMessageLevel>High</LibSassMessageLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,7 +22,9 @@
 		<PackageReference Include="LibSassBuilder" Version="2.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 		<PackageReference Include="MudBlazor" Version="6.0.5" />
 		<PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
 	</ItemGroup>

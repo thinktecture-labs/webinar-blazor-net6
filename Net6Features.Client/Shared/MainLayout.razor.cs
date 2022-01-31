@@ -81,6 +81,7 @@ namespace Net6Features.Client.Shared
             await InvokeAsync(StateHasChanged);
             if (LocalStorage is not null)
             {
+                // TODO: write own code, because lib save string as "{value}"
                 await LocalStorage.SetItemAsync(ApplicationThemeKey, _isInDarkMode ? "dark" : "light");
             }
         }

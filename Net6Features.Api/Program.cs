@@ -18,7 +18,10 @@ builder.Services.AddCors(options =>
                 .AllowCredentials()
                 .AllowAnyHeader()
                 .WithHeaders(new[] { "GET", "HEAD", "PUT", "POST", "DELETE" })
-                .WithOrigins("https://localhost:7229", "https://blazor-wasm-net6-hosted.azurewebsites.net");
+                .WithOrigins("https://localhost:7229", "https://localhost:7042",
+                             "https://blazor-wasm-net6.azurewebsites.net", 
+                             "https://blazor-wasm-net6-hosted.azurewebsites.net",
+                             "https://blazor-wasm-net6-without-aot.azurewebsites.net");
         });
 });
 
@@ -59,11 +62,12 @@ app.UseRouting();
 
 app.UseGrpcWeb();
 
-app.UseEndpoints(endpoints => {
+app.UseEndpoints(endpoints =>
+{
     endpoints.MapGrpcService<ContributionsService>().EnableGrpcWeb();
     endpoints.MapGrpcService<ConferencesService>().EnableGrpcWeb();
     endpoints.MapGrpcService<SpeakersService>().EnableGrpcWeb();
-    endpoints.MapControllers(); 
+    endpoints.MapControllers();
 });
 
 app.Run();

@@ -2,9 +2,16 @@
 
 @inherits CollectionComponentBase<Net6Features.Shared.Models.Speaker>
 
+<PageTitle>Speakers</PageTitle>
+
 <HeadContent>
-    <meta name="description" content="Collection for TT Speakers" />
+    <meta name="description" content="Collection for Thinktecture Speakers" />
 </HeadContent>
+
+@if (!_loadingData)
+{
+    <MudAlert Severity="@(_useGrpc ? Severity.Success : Severity.Info)">Deserialization time: <b>@(Math.Round(_totalSeconds - _headersSeconds, 2)) seconds</b></MudAlert>
+}
 
 <div class="d-flex flex-column">
     <div class="mb-2">
@@ -21,10 +28,13 @@
                    SearchTermChanged="OnSearchTermChanged"
                    UseGrpc="_useGrpc"
                    UseGrpcChanged="OnUseGrpcChanged"
-                   Title="Speakers"
+                   Title="Conferences"
                    Row="Title"
                    Data="_data"
-                   IsLoading="_loadingData"
-                   ValueExpression="@((d) => $"{d.FirstName} {d.LastName}")" />
+                   IsLoading="_loadingData">
+            <TableRow>
+                <MudHighlighter Text="@($"{context.FirstName} {context.LastName}")" HighlightedText="@_searchTerm" />
+            </TableRow>
+        </DataTable>
     </div>
 </div>

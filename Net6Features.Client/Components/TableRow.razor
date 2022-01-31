@@ -1,0 +1,20 @@
+﻿@typeparam TDataTableItem
+
+<PageTitle>TableRow</PageTitle>
+
+<tr>
+    <td class="truncate">
+        @ChildContent(Item)
+    </td>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown">
+        <td class="d-flex">
+            <MudIconButton Icon="@Icons.Filled.QrCode" OnClick="() => ShowQrCode()"></MudIconButton>
+            <MudIconButton Style="float: right;" Icon="@Icons.Filled.Edit"></MudIconButton>
+        </td>
+    </MudHidden>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+        <td></td>
+    </MudHidden>
+</tr>
+
+

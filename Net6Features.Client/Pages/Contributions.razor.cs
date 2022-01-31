@@ -6,7 +6,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace Net6Features.Client.Pages
 {
-    public partial class Contributions : IDisposable
+    public partial class Contributions
     {
         [Inject] public GrpcChannel? GrpcChannel { get; set; }
 

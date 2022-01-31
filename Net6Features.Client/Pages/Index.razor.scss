@@ -1,14 +1,10 @@
-﻿.flex-container {
+﻿.container {
     align-self: center;
-
-    display: flex;
     gap: 0.75rem;
     height: calc(100vh - var(--mud-appbar-height));
     width: 100%;
     max-width: 90vw;
 
-    justify-content: center;
-    align-items: center;
     &.column {
         flex-direction: column;
     }
@@ -17,4 +13,56 @@
 ::deep .mud-input-control {
     flex: unset;
     width: 100%;
+}
+
+
+/*weather widget*/
+
+$color1: #C8DAE6;
+$color2: white;
+$color3: #B8B8B8;
+$color4: #FFCD41;
+$color5: #2092A9;
+
+.weather-wrapper {
+    align-self: flex-end;
+
+
+    .weather-card {
+        margin: 1.25rem 0.3rem;
+        border-radius: 1.25rem;
+        position: relative;
+        overflow: hidden;
+        width: 14.875rem;
+        height: 14.875rem;
+        background-color: var(--mud-palette-appbar-background);
+        box-shadow: 0 0 1.56rem 0.06rem rgba(50, 50, 50, 0.1);
+
+        h1 {
+            position: absolute;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 5rem;
+            color: $color3;
+            bottom: 2rem;
+            left: 2rem;
+        }
+
+        p {
+            position: absolute;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.8rem;
+            color: lighten($color3, 10%);
+            bottom: 1rem;
+            left: 2rem;
+        }
+    }
+}
+
+.weather-icon {
+    position: relative;
+    top: 0;
+    float: right;
+    margin: 0rem 0.5rem 0 0;
 }

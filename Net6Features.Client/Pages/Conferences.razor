@@ -2,8 +2,13 @@
 @inherits CollectionComponentBase<Net6Features.Shared.Models.Conference>
 
 <HeadContent>
-    <meta name="description" content="Collection for TT Conferences" />
+    <meta name="description" content="Collection for Thinktecture Conferences" />
 </HeadContent>
+
+@if (!_loadingData)
+{
+    <MudAlert Severity="@(_useGrpc ? Severity.Success : Severity.Info)">Deserialization time: <b>@(Math.Round(_totalSeconds - _headersSeconds, 2)) seconds</b></MudAlert>
+}
 
 <div class="d-flex flex-column">
     <div class="mb-2">
@@ -23,7 +28,10 @@
                    Title="Conferences"
                    Row="Title"
                    Data="_data"
-                   IsLoading="_loadingData"
-                   ValueExpression="@((conf) => conf.Title)"/>
+                   IsLoading="_loadingData">
+            <TableRow>
+                <MudHighlighter Text="@context.Title" HighlightedText="@SearchTerm" />
+            </TableRow>
+        </DataTable>
     </div>
 </div>

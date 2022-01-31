@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net6Features.Api", "Net6Fea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net6Features.Shared", "Net6Features.Shared\Net6Features.Shared.csproj", "{219EC15D-B279-404F-859A-9B5E7DD8EDD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net6Features.Host", "Net6Features.Host\Net6Features.Host.csproj", "{DDFF6A5D-1D1F-407F-97EB-F93618460EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net6Features.Host", "Net6Features.Host\Net6Features.Host.csproj", "{DDFF6A5D-1D1F-407F-97EB-F93618460EEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
