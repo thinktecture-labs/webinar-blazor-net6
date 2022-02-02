@@ -11,7 +11,7 @@
     "Net6Features.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7138;http://localhost:5138",
       "environmentVariables": {

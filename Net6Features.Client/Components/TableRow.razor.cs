@@ -10,6 +10,10 @@ namespace Net6Features.Client.Components
         [CascadingParameter] public TDataTableItem Item { get; set; }
         [Parameter] public RenderFragment<TDataTableItem> ChildContent { get; set; }
 
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+        }
         private void ShowQrCode()
         {
             if (DialogService != null)

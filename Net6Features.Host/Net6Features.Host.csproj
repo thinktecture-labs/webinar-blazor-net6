@@ -14,8 +14,4 @@
 		<ProjectReference Include="..\Net6Features.Client\Net6Features.Client.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="wwwroot\" />
-	</ItemGroup>
-
 </Project>
