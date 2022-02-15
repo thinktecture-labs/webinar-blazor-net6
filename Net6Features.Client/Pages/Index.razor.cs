@@ -12,7 +12,7 @@ namespace Net6Features.Client.Pages
         [Inject] public WeatherService WeatherService { get; set; } = default!;
         
         private string _pageTitle = ".NET 6";
-        private string _description = "Neue Features coole in .NET 6";
+        private string _description = "Neue Features in .NET 6";
         private string _dataSource = string.Empty;
         private string _searchTerm = string.Empty;
         private string _imgPath = string.Empty;
@@ -31,10 +31,10 @@ namespace Net6Features.Client.Pages
             {
                 // Meldung aktuallisieren wenn noch kein Pre-Rendering statt gefunden hat.
                 Console.WriteLine("Load data from Api.");
-                _temperatures = await WeatherService.GetCurrentWeather("Rodalben");
+                _temperatures = await WeatherService.GetCurrentWeather("Frankfurt am Main");
             }
 
-            _imgPath = $"http://openweathermap.org/img/wn/{_temperatures?.Weather.FirstOrDefault()?.Icon ?? "03d"}@2x.png";
+            _imgPath = $"https://openweathermap.org/img/wn/{_temperatures?.Weather.FirstOrDefault()?.Icon ?? "03d"}@2x.png";
             await base.OnInitializedAsync();
         }
 

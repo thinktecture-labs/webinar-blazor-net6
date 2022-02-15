@@ -1,14 +1,17 @@
 using Blazored.LocalStorage;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Http;
 using MudBlazor.Services;
+using Net6Features.Client;
 using Net6Features.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-//builder.RootComponents.Add<App>("#app");
-//builder.RootComponents.Add<HeadOutlet>("head::after");
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
+
 var apiUrl = builder.Configuration.GetSection("api").GetValue<string>("baseUrl");
 
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(apiUrl) });
