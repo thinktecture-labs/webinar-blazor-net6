@@ -37,4 +37,9 @@
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Include="..\Net6Features.NativeDependencies.Rust\src\lib.rs">
+	    <Link>NativeSources\lib.rs</Link>
+	  </None>
+	</ItemGroup>
 </Project>
