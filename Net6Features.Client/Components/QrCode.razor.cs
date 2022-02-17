@@ -18,8 +18,8 @@ namespace Net6Features.Client.Components
         private IJSObjectReference _module;
         private ElementReference canvasElem;
         private byte[] buffer = new byte[256 * 256 * 4];
-        int width = 100;
-        int height = 100;
+        private int width;
+        private int height;
         private string currentData = string.Empty;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
